@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 import './App.css';
+import Rudy from './Rudy';
+import Trump from './Trump';
+import Hillary from './Hillary';
+import Bernie from './Bernie';
+import TwitterChart from './TwitterChart';
 
 const margin = { top: 20, right: 5, bottom: 20, left: 35 };
-const height = 700;
-const width = 600;
+const height = 500;
+const width = 400;
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -56,57 +61,78 @@ class Chart extends Component {
 
 
     return (
-      <div className="App">
-        <svg height={height} width={width} style={{ margin: 15 }}>
-          <rect
-            width={width - (margin.left + margin.right)}
-            height={height - (margin.top + margin.bottom)}
-            x={margin.left}
-            y={margin.top}
-            fill="#dddddd"
-            stroke="#aaa"
-          />
-          {
-            this.state.yScale.ticks().map((t) =>{
-              const transform = `translate(${margin.left},${this.state.yScale(t)})`;
-              return (
-                <g transform={transform} key={t.toString()}>
-                  <rect fill="black" x="-5" y="0" width="5" height="1" />
-                  <text x="-35" y="5" fontSize="8">{t}℉</text>
-                </g>
-              )
-            })
-          }
-          {
-            this.state.xScale.ticks().map((t) =>{
-              const transform = `translate(${this.state.xScale(t)},${height - margin.bottom})`;
-              return (
-                <g transform={transform} key={t.toString()}>
-                  <rect fill="black" x="0" y="0" width="1" height="5" />
-                  <text x="-7" y="15" fontSize="8">{monthNames[t.getMonth()]}</text>
-                </g>
-              )
-            })
-          }
-          <path d={this.state.lineGenerator(this.state.points)} stroke="black" strokeWidth="3" fill="none" />
-          {
-            this.state.points.map((d) => {
-              return (
-                <circle fill="red" key={d.date} cx={d.x} cy={d.y} r={5} onClick={() =>
-                  this.setState({
-                    date: d.date,
-                    high: d.high,
-                  })
-                } />
-              )
-            })
-          }
-        </svg>
-        <div>
-         {this.state.high}{this.state.high && '℉'}{this.state.high && ' on '}{this.state.date && this.state.date.toDateString()}
+      <div style={{ display: 'flex' }}>
+        <div style={{display: 'inline-block'}}>
+          <h1>Rudy</h1>
+          <TwitterChart data={Rudy} />
+        </div>
+        <div style={{display: 'inline-block'}}>
+          <h1>Trump</h1>
+          <TwitterChart data={Trump} />
+        </div>
+        <div style={{display: 'inline-block'}}>
+          <h1>Hillary</h1>
+          <TwitterChart data={Hillary} />
+        </div>
+        <div style={{display: 'inline-block'}}>
+          <h1>Bernie</h1>
+          <TwitterChart data={Bernie} />
         </div>
       </div>
     );
+
+    // return (
+    //   <div className="App">
+    //     <svg height={height} width={width} style={{ margin: 15 }}>
+    //       <rect
+    //         width={width - (margin.left + margin.right)}
+    //         height={height - (margin.top + margin.bottom)}
+    //         x={margin.left}
+    //         y={margin.top}
+    //         fill="#dddddd"
+    //         stroke="#aaa"
+    //       />
+    //       {
+    //         this.state.yScale.ticks().map((t) =>{
+    //           const transform = `translate(${margin.left},${this.state.yScale(t)})`;
+    //           return (
+    //             <g transform={transform} key={t.toString()}>
+    //               <rect fill="black" x="-5" y="0" width="5" height="1" />
+    //               <text x="-35" y="5" fontSize="8">{t}℉</text>
+    //             </g>
+    //           )
+    //         })
+    //       }
+    //       {
+    //         this.state.xScale.ticks().map((t) =>{
+    //           const transform = `translate(${this.state.xScale(t)},${height - margin.bottom})`;
+    //           return (
+    //             <g transform={transform} key={t.toString()}>
+    //               <rect fill="black" x="0" y="0" width="1" height="5" />
+    //               <text x="-7" y="15" fontSize="8">{monthNames[t.getMonth()]}</text>
+    //             </g>
+    //           )
+    //         })
+    //       }
+    //       <path d={this.state.lineGenerator(this.state.points)} stroke="black" strokeWidth="3" fill="none" />
+    //       {
+    //         this.state.points.map((d) => {
+    //           return (
+    //             <circle fill="red" key={d.date} cx={d.x} cy={d.y} r={5} onClick={() =>
+    //               this.setState({
+    //                 date: d.date,
+    //                 high: d.high,
+    //               })
+    //             } />
+    //           )
+    //         })
+    //       }
+    //     </svg>
+    //     <div>
+    //      {this.state.high}{this.state.high && '℉'}{this.state.high && ' on '}{this.state.date && this.state.date.toDateString()}
+    //     </div>
+    //   </div>
+    // );
   }
 }
 
