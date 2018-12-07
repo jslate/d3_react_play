@@ -3,6 +3,7 @@ import './App.css';
 import TwitterCharts from './TwitterCharts';
 import TemperatureChart from './TemperatureChart';
 import TemperatureChartD3Axis from './TemperatureChartD3Axis';
+import ThriveExperienceReport from './thriveExperienceReport';
 
 const tempuratureData = [
   { date: new Date('1/1/2018'), high: 25 },
@@ -23,14 +24,103 @@ const tempuratureData = [
   { date: new Date('11/25/2018'), high: 40 },
 ];
 
+const thriveExperienceReportData = [
+  {
+    date: new Date('2017-07-30'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2017-08-31'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2017-10-26'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2017-11-07'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2017-11-20'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-01-03'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-01-04'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-01-16'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-01-21'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-01-27'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-02-09'),
+    how_often_rating: 2
+  },
+  {
+    date: new Date('2018-02-23'),
+    how_often_rating: 2
+  },
+  {
+    date: new Date('2018-03-08'),
+    how_often_rating: 1
+  },
+  {
+    date: new Date('2018-03-14'),
+    how_often_rating: 1
+  },
+  {
+    date: new Date('2018-04-12'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-05-12'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-06-08'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-07-08'),
+    how_often_rating: 2
+  },
+  {
+    date: new Date('2018-08-07'),
+    how_often_rating: 3
+  },
+  {
+    date: new Date('2018-09-07'),
+    how_often_rating: 2
+  },
+  {
+    date: new Date('2018-10-07'),
+    how_often_rating: 2
+  }
+];
+
 class App extends Component {
 
   state = {
-    show: 'temperatureChart',
+    show: 'thriveExperienceReport',
   }
 
   renderMainContent() {
     switch (this.state.show) {
+      case 'thriveExperienceReport':
+        return <ThriveExperienceReport data={thriveExperienceReportData} />
       case 'temperatureChart':
         return <TemperatureChart data={tempuratureData} />
       case 'temperatureChartD3Axis':
@@ -45,6 +135,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <button onClick={(() => this.setState({ show: 'thriveExperienceReport'}))} value="x">Thrive Experience Report</button>
         <button onClick={(() => this.setState({ show: 'temperatureChart'}))} value="x">Temperature Chart</button>
         <button onClick={(() => this.setState({ show: 'temperatureChartD3Axis'}))} value="x">Temperature Chart D3 Axis</button>
         <button onClick={(() => this.setState({ show: 'tweetChart'}))} value="x">Tweet Chart</button>
