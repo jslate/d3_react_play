@@ -44,7 +44,9 @@ class TwitterChart extends Component {
   render() {
     return (
       <div className="App">
-        <div style={{width: width, marginLeft: margin.left}}>
+        <div style={{position: 'relative', width: width, marginLeft: margin.left}}>
+          <div style={{ transform: 'rotate(270deg)', position: 'absolute', right: -5, top: height/2 }}>← Likes →</div>
+          <div style={{ position: 'absolute', left: width / 2 - 30, top: height - 30 }}>← Replies →</div>
           <svg height={height} width={width} style={{ margin: 5 }}>
             <rect
               width={width - (margin.left + margin.right)}

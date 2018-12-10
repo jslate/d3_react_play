@@ -3,7 +3,47 @@ import './App.css';
 import TwitterCharts from './TwitterCharts';
 import TemperatureChart from './TemperatureChart';
 import TemperatureChartD3Axis from './TemperatureChartD3Axis';
-import ThriveExperienceReport from './thriveExperienceReport';
+import ThriveExperienceReport from './ThriveExperienceReport';
+import Chart from './Chart';
+
+class App extends Component {
+
+  state = {
+    show: 'chart',
+  }
+
+  renderMainContent() {
+    switch (this.state.show) {
+      case 'chart':
+        return <Chart />
+      case 'thriveExperienceReport':
+        return <ThriveExperienceReport data={thriveExperienceReportData} />
+      case 'temperatureChart':
+        return <TemperatureChart data={tempuratureData} />
+      case 'temperatureChartD3Axis':
+        return <TemperatureChartD3Axis data={tempuratureData} />
+      case 'tweetChart':
+        return <TwitterCharts />
+      default:
+        return <TemperatureChart data={tempuratureData} />
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={(() => this.setState({ show: 'chart'}))} value="x">Simple Chart</button>
+        <button onClick={(() => this.setState({ show: 'temperatureChartD3Axis'}))} value="x">Temperature Chart D3 Axis</button>
+        <button onClick={(() => this.setState({ show: 'temperatureChart'}))} value="x">Temperature Chart</button>
+        <button onClick={(() => this.setState({ show: 'thriveExperienceReport'}))} value="x">Thrive Experience Report</button>
+        <button onClick={(() => this.setState({ show: 'tweetChart'}))} value="x">Tweet Chart</button>
+        {this.renderMainContent()}
+      </div>
+    );
+  }
+}
+
+export default App;
 
 const tempuratureData = [
   { date: new Date('1/1/2018'), high: 25 },
@@ -110,39 +150,3 @@ const thriveExperienceReportData = [
     how_often_rating: 2
   }
 ];
-
-class App extends Component {
-
-  state = {
-    show: 'thriveExperienceReport',
-  }
-
-  renderMainContent() {
-    switch (this.state.show) {
-      case 'thriveExperienceReport':
-        return <ThriveExperienceReport data={thriveExperienceReportData} />
-      case 'temperatureChart':
-        return <TemperatureChart data={tempuratureData} />
-      case 'temperatureChartD3Axis':
-        return <TemperatureChartD3Axis data={tempuratureData} />
-      case 'tweetChart':
-        return <TwitterCharts />
-      default:
-        return <TemperatureChart data={tempuratureData} />
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <button onClick={(() => this.setState({ show: 'thriveExperienceReport'}))} value="x">Thrive Experience Report</button>
-        <button onClick={(() => this.setState({ show: 'temperatureChart'}))} value="x">Temperature Chart</button>
-        <button onClick={(() => this.setState({ show: 'temperatureChartD3Axis'}))} value="x">Temperature Chart D3 Axis</button>
-        <button onClick={(() => this.setState({ show: 'tweetChart'}))} value="x">Tweet Chart</button>
-        {this.renderMainContent()}
-      </div>
-    );
-  }
-}
-
-export default App;
