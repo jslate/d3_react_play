@@ -5,10 +5,12 @@ The basic ideas come from this great tutorial (subscription required): https://f
 There are 5 charts:
 
 1. The [simplest chart](src/Chart.js) I could make in the 20 minutes or so before demo.
-2. A [temperature chart], rendering the axes with D3, as described in the tutorial. I did something not quite right, and to get the axes to show up, you have to cause an update by clicking on one of the points.
+2. A [temperature chart](src/TemperatureChart.js), rendering the axes with D3, as described in the tutorial. I did something not quite right, and to get the axes to show up, you have to cause an update by clicking on one of the points.
 3. A [slightly different temperature chart](src/TemperatureChart.js), attempting to render the axes with React. You can see there are a few random tweaks (`x="-7"`) to make that work. I liked the idea of having all the rendering done in React, and maybe it would be possible to do it w/out the random tweaks with a bit of care.
 4. A [thrive experience report](src/ThriveExperienceReport.js) -- similar to the second temperature report, but using data actually related to the point of this excercise.
 5. [Twitter scatterplots](src/TwitterCharts.js) of likes vs. replies just for fun.
+
+You should just be able to run `yarn start` to view the charts, etc.
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

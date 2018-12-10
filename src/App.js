@@ -38,6 +38,7 @@ class App extends Component {
         <button onClick={(() => this.setState({ show: 'thriveExperienceReport'}))} value="x">Thrive Experience Report</button>
         <button onClick={(() => this.setState({ show: 'tweetChart'}))} value="x">Tweet Chart</button>
         {this.renderMainContent()}
+        <p>See the <a href="https://github.com/jslate/d3_react_play/blob/master/README.md">README</a> file for details.</p>
       </div>
     );
   }
